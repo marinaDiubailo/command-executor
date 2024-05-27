@@ -5,12 +5,12 @@ import { IStreamLogger } from './stream-logger.interface'
 export class StreamHandler {
   constructor(private logger: IStreamLogger) {}
 
-  proccessOutpute(stream: ChildProcessWithoutNullStreams): void {
+  processOutput(stream: ChildProcessWithoutNullStreams): void {
     stream.stdout.on('data', (data: any) => {
-      this.logger.log(data)
+      this.logger.log(data.toString())
     })
     stream.stderr.on('data', (data: any) => {
-      this.logger.error(data)
+      this.logger.error(data.toString())
     })
     stream.on('close', () => {
       this.logger.end()

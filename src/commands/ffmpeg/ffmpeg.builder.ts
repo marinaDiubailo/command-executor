@@ -25,7 +25,8 @@ export class FfmpegBuilder {
 
     const args: string[] = ['-i', this.inputPath]
     this.options.forEach((value, key) => {
-      args.push(key, value)
+      args.push(key)
+      args.push(value)
     })
     args.push(outputPath)
     return args

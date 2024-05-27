@@ -30,13 +30,17 @@ export class FfmpegExecutor extends CommandExecutor<IFfmpegInput> {
     return { command: 'ffmpeg', args, output }
   }
 
-  protected spawn({ command, args, output }: ICommandExecFfmpeg): ChildProcessWithoutNullStreams {
+  protected spawn({
+    command: commmand,
+    args,
+    output
+  }: ICommandExecFfmpeg): ChildProcessWithoutNullStreams {
     this.fileService.deleteFileIfExists(output)
-    return spawn(command, args)
+    return spawn(commmand, args)
   }
 
-  protected proccessStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void {
+  protected processStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void {
     const handler = new StreamHandler(logger)
-    handler.proccessOutpute(stream)
+    handler.processOutput(stream)
   }
 }
